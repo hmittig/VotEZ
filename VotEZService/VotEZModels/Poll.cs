@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace VotEZModels
 {
-    class Poll
+    public class Poll
     {
         private String question;
         private String code;
         private DateTime datetoclose;
         private User user;
+        private int pollchoiceID;
         public int ID { get; set; }
 
         public String Question
@@ -42,6 +43,19 @@ namespace VotEZModels
                     throw new ArgumentNullException();
                 }
                 user = value;
+            }
+        }
+
+        public int PollChoiceID 
+        {
+            get { return pollchoiceID; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                pollchoiceID = value;
             }
         }
     }

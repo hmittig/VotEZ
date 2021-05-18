@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VotEZModels
 {
-    class PollChoice
+    public class PollChoice
     {
         private Poll poll;
         private String option1;
@@ -45,5 +45,10 @@ namespace VotEZModels
             get { return option3; }
             set { option3 = value; }
         }
+
+        public ICollection<PollVote> PollVote { get; set; }
+
+       
+
     }
 }

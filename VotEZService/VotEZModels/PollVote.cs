@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VotEZModels
 {
-    class PollVote
+    public class PollVote
     {
         private User user;
         private PollChoice pollchoice;

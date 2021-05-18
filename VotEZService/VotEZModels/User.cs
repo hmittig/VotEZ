@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VotEZModels
 {
@@ -7,6 +8,7 @@ namespace VotEZModels
         private String name;
         private String email;
         private Boolean isAdmin;
+        private Poll poll;
 
         public int ID 
         {
@@ -31,5 +33,8 @@ namespace VotEZModels
             get { return this.isAdmin; }
             set { this.isAdmin = value; }
         }
+
+        public ICollection<Poll> Poll { get; set; }
+        public ICollection<PollVote> PollVote { get; set; }
     }
 }
