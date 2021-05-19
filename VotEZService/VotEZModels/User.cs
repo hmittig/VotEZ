@@ -8,7 +8,6 @@ namespace VotEZModels
         private String name;
         private String email;
         private Boolean isAdmin;
-        private Poll poll;
 
         public int ID 
         {
@@ -34,7 +33,7 @@ namespace VotEZModels
             set { this.isAdmin = value; }
         }
 
-        public ICollection<Poll> Poll { get; set; }
-        public ICollection<PollVote> PollVote { get; set; }
+        //public ICollection<Poll> Poll { get; set; }
+        //public ICollection<PollVote> PollVote { get; set; }
     }
 }

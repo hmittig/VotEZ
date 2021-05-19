@@ -7,7 +7,7 @@ using VotEZModels;
 
 namespace VotEZBL
 {
-    interface IPollChoicesBL
+    public interface IPollChoicesBL
     {
         Task<PollChoice> AddPollChoicesAsync(PollChoice poll);
 

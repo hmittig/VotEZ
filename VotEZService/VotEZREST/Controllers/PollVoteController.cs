@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VotEZBL;
+using VotEZModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,36 +14,66 @@ namespace VotEZREST.Controllers
     [ApiController]
     public class PollVoteController : ControllerBase
     {
-        // GET: api/<PollVoteController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private readonly IPollVoteBL _pvBL;
 
-        // GET api/<PollVoteController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+
+        public PollVoteController(IPollVoteBL pvBL)
         {
-            return "value";
+            _pvBL = pvBL;
         }
 
         // POST api/<PollVoteController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Consumes("application/json")]
+        public async Task<IActionResult> AddPollVoteAsync([FromBody] PollVote pv)
         {
+            try
+            {
+                await _pvBL.AddPollVoteAsync(pv);
+                return CreatedAtAction("AddPollVote", pv);
+            }
+            catch
+            {
+                return StatusCode(400);
+            }
         }
 
-        // PUT api/<PollVoteController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        //GET api/<PollVoteController>/
+        [HttpGet]
+        public async Task<IActionResult> GetPollsAsync()
         {
+            return Ok(await _pvBL.GetPollVotesAsync());
         }
 
-        // DELETE api/<PollVoteController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        //PUT api/<PollVoteController>/
+        [HttpPut]
+        public async Task<IActionResult> UpdateUserAsync(PollVote pv)
         {
+            try
+            {
+                await _pvBL.UpdatePollVoteAsync(pv);
+                return NoContent();
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+        // DELETE api/<PollVoteController>/
+        [HttpDelete]
+        public async Task<IActionResult> DeletePollAsync(PollVote pv)
+        {
+            try
+            {
+                //var user = await _userBL.GetUserByIdAsync(id);
+                await _pvBL.DeletePollVoteAsync(pv);
+                return NoContent();
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
     }
 }

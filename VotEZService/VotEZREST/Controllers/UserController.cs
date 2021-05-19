@@ -61,7 +61,7 @@ namespace VotEZREST.Controllers
         }
 
         // DELETE api/<UserController>/
-        [HttpDelete("{user}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteUserAsync(User user)
         {
             try

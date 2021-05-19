@@ -8,35 +8,35 @@ namespace VotEZModels
 {
     public class PollVote
     {
-        private User user;
-        private PollChoice pollchoice;
+        private int userID;
+        private int  pollchoiceID;
         private String choice;
 
         public int ID {get;set;}
 
-        public User User
+        public int UserID
         {
-            get { return user; }
+            get { return userID; }
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException();
                 }
-                user = value;
+                userID = value;
             }
         }
 
-        public PollChoice PollChoice
+        public int PollChoiceID
         {
-            get { return PollChoice; }
+            get { return pollchoiceID; }
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException();
                 }
-                PollChoice = value;
+                pollchoiceID = value;
             }
         }
 

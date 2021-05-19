@@ -46,7 +46,7 @@ namespace VotEZModels
             set { option3 = value; }
         }
 
-        public ICollection<PollVote> PollVote { get; set; }
+        //public ICollection<PollVote> PollVote { get; set; }
 
        
 

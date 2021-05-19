@@ -35,25 +35,25 @@ namespace VotEZDL
                 .ValueGeneratedOnAdd();
 
             // Relations
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.Poll)
-                .WithOne(p => p.User)
-                .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<User>()
+            //    .HasMany(u => u.Poll)
+            //    .WithOne(p => p.User)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<PollChoice>()
                 .HasOne(p => p.Poll)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.PollVote)
-                .WithOne(pv => pv.User)
-                .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<User>()
+            //    .HasMany(u => u.PollVote)
+            //    .WithOne(pv => pv.User)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<PollChoice>()
-                .HasMany(pc => pc.PollVote)
-                .WithOne(pv => pv.PollChoice)
-                .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<PollChoice>()
+            //    .HasMany(pc => pc.PollVote)
+            //    .WithOne(pv => pv.PollChoice)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

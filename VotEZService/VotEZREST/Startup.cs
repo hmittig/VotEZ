@@ -49,6 +49,12 @@ namespace VotEZREST
             services.AddDbContext<VotEZDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HMPersonalDB")));
             services.AddScoped<IUserRepo, UserRepoDB>();
             services.AddScoped<IUserBL, UserBL>();
+            services.AddScoped<IPollRepo, PollRepoDB>();
+            services.AddScoped<IPollBL, PollBL>();
+            services.AddScoped<IPollChoicesRepo, PollChoicesRepoDB>();
+            services.AddScoped<IPollChoicesBL, PollChoicesBL>();
+            services.AddScoped<IPollVoteRepo, PollVoteRepoDB>();
+            services.AddScoped<IPollVoteBL, PollVoteBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

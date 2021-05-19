@@ -10,7 +10,7 @@ using VotEZDL;
 namespace VotEZDL.Migrations
 {
     [DbContext(typeof(VotEZDBContext))]
-    [Migration("20210517184432_Initial")]
+    [Migration("20210519183459_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,15 +40,13 @@ namespace VotEZDL.Migrations
                     b.Property<string>("Question")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("PollChoiceID")
                         .IsUnique();
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("Poll");
                 });
@@ -84,17 +82,13 @@ namespace VotEZDL.Migrations
                     b.Property<string>("Choice")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PollChoiceID")
+                    b.Property<int>("PollChoiceID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("PollChoiceID");
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("PollVote");
                 });
@@ -127,44 +121,11 @@ namespace VotEZDL.Migrations
                         .HasForeignKey("VotEZModels.Poll", "PollChoiceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("VotEZModels.User", "User")
-                        .WithMany("Poll")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("VotEZModels.PollVote", b =>
-                {
-                    b.HasOne("VotEZModels.PollChoice", "PollChoice")
-                        .WithMany("PollVote")
-                        .HasForeignKey("PollChoiceID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("VotEZModels.User", "User")
-                        .WithMany("PollVote")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("PollChoice");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("VotEZModels.PollChoice", b =>
                 {
                     b.Navigation("Poll");
-
-                    b.Navigation("PollVote");
-                });
-
-            modelBuilder.Entity("VotEZModels.User", b =>
-                {
-                    b.Navigation("Poll");
-
-                    b.Navigation("PollVote");
                 });
 #pragma warning restore 612, 618
         }
