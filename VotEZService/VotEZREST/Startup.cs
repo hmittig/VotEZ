@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VotEZBL;
 using VotEZDL;
 
 namespace VotEZREST
@@ -46,8 +47,8 @@ namespace VotEZREST
                        });
                });
             services.AddDbContext<VotEZDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HMPersonalDB")));
-            //services.AddScoped<IProjectRepoDB, ProjectRepoDB>();
-            //services.AddScoped<IProjectBL, ProjBL>();
+            services.AddScoped<IUserRepo, UserRepoDB>();
+            services.AddScoped<IUserBL, UserBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
