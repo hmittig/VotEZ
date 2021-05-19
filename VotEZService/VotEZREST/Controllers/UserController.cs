@@ -38,7 +38,7 @@ namespace VotEZREST.Controllers
             }
         }
 
-        //GET api/<LocationController>/
+        //GET api/<UserController>/
         [HttpGet]
         public async Task<IActionResult> GetUsersAsync()
         {
