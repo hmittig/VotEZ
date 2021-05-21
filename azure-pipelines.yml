@@ -26,3 +26,11 @@ steps:
     publishWebProjects: true
     zipAfterPublish: true
     workingDirectory: 'VotEZService/'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(dd651aef-7c50-4050-aa86-5a092beb0448)'
+    appType: 'webApp'
+    WebAppName: 'VEZback'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
