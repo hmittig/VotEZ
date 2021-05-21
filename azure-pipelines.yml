@@ -10,7 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
+  solution: '**/VotEZSerivce/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -24,5 +24,5 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    workingDirectory: 'VotEZ/VotEZService/'
     zipAfterPublish: true
+    workingDirectory: 'VotEZService/'
