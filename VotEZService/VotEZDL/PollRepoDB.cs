@@ -27,13 +27,25 @@ namespace VotEZDL
         public async Task<List<Poll>> GetPollsAsync()
         {
             return await _context.Poll
+                .Include("PollChoice")
+                .AsNoTracking()
                 .Select(poll => poll)
+                .ToListAsync();
+        }
+
+        public async Task<List<Poll>> GetPollsByUser(string email)
+        {
+            return await _context.Poll
+                .Include("PollChoice")
+                .AsNoTracking()
+                .Select(poll => poll)
+                .Where(poll => poll.Email == email)
                 .ToListAsync();
         }
 
         public async Task<Poll> UpdatePollAsync(Poll poll)
         {
-            User oldpoll = await _context.User.FindAsync(poll.ID);
+            Poll oldpoll = await _context.Poll.FindAsync(poll.ID);
             _context.Entry(oldpoll).CurrentValues.SetValues(poll);
             await _context.SaveChangesAsync();
             _context.ChangeTracker.Clear();

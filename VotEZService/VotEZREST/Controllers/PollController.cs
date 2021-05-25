@@ -38,11 +38,21 @@ namespace VotEZREST.Controllers
             }
         }
 
-        //GET api/<PollControllerr>/
+        //GET api/<PollController>/
         [HttpGet]
         public async Task<IActionResult> GetPollsAsync()
         {
             return Ok(await _pollBL.GetPollsAsync());
+        }
+
+        //GET api/<PollController>
+        [HttpGet("createdpolls/{email}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetCharityByEidAsync(string email)
+        {
+            var poll = await _pollBL.GetPollsByUserAsync(email);
+            if (poll == null) return NotFound();
+            return Ok(poll);
         }
 
         //PUT api/<PollController>/

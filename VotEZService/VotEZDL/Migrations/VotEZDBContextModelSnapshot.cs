@@ -32,19 +32,13 @@ namespace VotEZDL.Migrations
                     b.Property<DateTime>("DateToClose")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PollChoiceID")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Question")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("PollChoiceID")
-                        .IsUnique();
 
                     b.ToTable("Poll");
                 });
@@ -65,7 +59,13 @@ namespace VotEZDL.Migrations
                     b.Property<string>("Option3")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PollID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("PollID")
+                        .IsUnique();
 
                     b.ToTable("PollChoices");
                 });
@@ -80,10 +80,10 @@ namespace VotEZDL.Migrations
                     b.Property<string>("Choice")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PollChoiceID")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserID")
+                    b.Property<int>("PollID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -91,39 +91,18 @@ namespace VotEZDL.Migrations
                     b.ToTable("PollVote");
                 });
 
-            modelBuilder.Entity("VotEZModels.User", b =>
+            modelBuilder.Entity("VotEZModels.PollChoice", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("User");
-                });
-
-            modelBuilder.Entity("VotEZModels.Poll", b =>
-                {
-                    b.HasOne("VotEZModels.PollChoice", null)
-                        .WithOne("Poll")
-                        .HasForeignKey("VotEZModels.Poll", "PollChoiceID")
+                    b.HasOne("VotEZModels.Poll", null)
+                        .WithOne("PollChoice")
+                        .HasForeignKey("VotEZModels.PollChoice", "PollID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VotEZModels.PollChoice", b =>
+            modelBuilder.Entity("VotEZModels.Poll", b =>
                 {
-                    b.Navigation("Poll");
+                    b.Navigation("PollChoice");
                 });
 #pragma warning restore 612, 618
         }

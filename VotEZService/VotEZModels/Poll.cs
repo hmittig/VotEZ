@@ -11,8 +11,8 @@ namespace VotEZModels
         private String question;
         private String code;
         private DateTime datetoclose;
-        private int userID;
-        private int pollchoiceID;
+        private string email;
+        private PollChoice pollchoice;
         public int ID { get; set; }
 
         public String Question
@@ -33,29 +33,29 @@ namespace VotEZModels
             set { datetoclose = value; }
         }
 
-        public int UserID
+        public string Email
         {
-            get { return userID; }
+            get { return email; }
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException();
                 }
-                userID = value;
+                email = value;
             }
         }
 
-        public int PollChoiceID 
+        public PollChoice PollChoice 
         {
-            get { return pollchoiceID; }
+            get { return pollchoice; }
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException();
                 }
-                pollchoiceID = value;
+                pollchoice = value;
             }
         }
     }

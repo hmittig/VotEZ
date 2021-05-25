@@ -13,6 +13,8 @@ namespace VotEZDL
 
         Task<List<Poll>> GetPollsAsync();
 
+        Task<List<Poll>> GetPollsByUser(string email);
+
         Task<Poll> UpdatePollAsync(Poll poll);
 
         Task<Poll> DeletePollAsync(Poll poll);

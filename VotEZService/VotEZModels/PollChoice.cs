@@ -8,23 +8,23 @@ namespace VotEZModels
 {
     public class PollChoice
     {
-        private Poll poll;
+        private int pollID;
         private String option1;
         private String option2;
         private String option3;
 
         public int ID { get; set; }
 
-        public Poll Poll
+        public int PollID
         {
-            get { return poll; }
+            get { return pollID; }
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException();
                 }
-                poll = value;
+                pollID = value;
             }
         }
 
@@ -37,7 +37,7 @@ namespace VotEZModels
         public String Option2
         {
             get { return option2; }
-            set { option1 = value; }
+            set { option2 = value; }
         }
 
         public String Option3
@@ -45,8 +45,6 @@ namespace VotEZModels
             get { return option3; }
             set { option3 = value; }
         }
-
-        //public ICollection<PollVote> PollVote { get; set; }
 
        
 
