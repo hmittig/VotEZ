@@ -13,6 +13,8 @@ namespace VotEZDL
 
         Task<List<PollVote>> GetPollVotesAsync();
 
+        Task<PollVote> GetUserVoteSinglePollAsync(int pollID, string email);
+
         Task<PollVote> UpdatePollVoteAsync(PollVote pv);
 
         Task<PollVote> DeletePollVoteAsync(PollVote pv);

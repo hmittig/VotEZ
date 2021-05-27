@@ -29,9 +29,13 @@ namespace VotEZBL
         }
         public async Task<List<Poll>> GetPollsByUserAsync(string email)
         {
-            return await _repo.GetPollsByUser(email);
+            return await _repo.GetPollsByUserAsync(email);
         }
 
+        public async Task<Poll> PollCheckAsync(string code, string email)
+        {
+            return await _repo.PollCheckAsync(code, email);
+        }
 
         public async Task<Poll> UpdatePollAsync(Poll poll)
         {

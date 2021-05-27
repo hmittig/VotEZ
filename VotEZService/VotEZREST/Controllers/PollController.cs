@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VotEZBL;
 using VotEZModels;
+using Serilog;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -48,9 +49,19 @@ namespace VotEZREST.Controllers
         //GET api/<PollController>
         [HttpGet("createdpolls/{email}")]
         [Produces("application/json")]
-        public async Task<IActionResult> GetCharityByEidAsync(string email)
+        public async Task<IActionResult> GetPollsByUserAsync(string email)
         {
             var poll = await _pollBL.GetPollsByUserAsync(email);
+            if (poll == null) return NotFound();
+            return Ok(poll);
+        }
+
+        //GET api/<PollController>/
+        [HttpGet("{code},{email}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> PollCheckAsync(string code, string email)
+        {
+            var poll = await _pollBL.PollCheckAsync(code, email);
             if (poll == null) return NotFound();
             return Ok(poll);
         }

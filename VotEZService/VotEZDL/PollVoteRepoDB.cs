@@ -31,6 +31,12 @@ namespace VotEZDL
                 .ToListAsync();
         }
 
+        public async Task<PollVote> GetUserVoteSinglePollAsync(int pollID, string email)
+        {
+            return await _context.PollVote
+                .FirstOrDefaultAsync(pv => pv.PollID == pollID && pv.Email == email);
+        }
+
         public async Task<PollVote> UpdatePollVoteAsync(PollVote pv)
         {
             PollVote oldpv = await _context.PollVote.FindAsync(pv.ID);

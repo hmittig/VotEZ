@@ -15,6 +15,9 @@ namespace VotEZBL
         // Retrieve all poll votes in the database
         Task<List<PollVote>> GetPollVotesAsync();
 
+        // Retrieve a poll vote  by a user in a single poll
+        Task<PollVote> GetUserVoteSinglePollAsync(int pollID, string email);
+
         // Update a specified poll vote
         Task<PollVote> UpdatePollVoteAsync(PollVote pv);
 

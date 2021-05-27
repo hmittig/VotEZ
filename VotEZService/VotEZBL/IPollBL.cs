@@ -18,6 +18,9 @@ namespace VotEZBL
         // Retrieving a user created poll
         Task<List<Poll>> GetPollsByUserAsync(string email);
 
+        // Validating access code / checking to see if user has voted on poll before
+        Task<Poll> PollCheckAsync(string code, string email);
+
         // Updating a specified poll
         Task<Poll> UpdatePollAsync(Poll poll);
 

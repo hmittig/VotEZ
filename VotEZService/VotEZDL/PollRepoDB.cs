@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VotEZModels;
+using VotEZDL;
 
 namespace VotEZDL
 {
@@ -33,7 +34,7 @@ namespace VotEZDL
                 .ToListAsync();
         }
 
-        public async Task<List<Poll>> GetPollsByUser(string email)
+        public async Task<List<Poll>> GetPollsByUserAsync(string email)
         {
             return await _context.Poll
                 .Include("PollChoice")
@@ -41,6 +42,32 @@ namespace VotEZDL
                 .Select(poll => poll)
                 .Where(poll => poll.Email == email)
                 .ToListAsync();
+        }
+
+        public async Task<Poll> GetPollByCodeAsync(string code)
+        {
+            return await _context.Poll
+                .Include("PollChoice")
+                .AsNoTracking()
+                .Select(poll => poll)
+                .Where(poll => poll.Code == code && DateTime.Now < poll.DateToClose)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<Poll> PollCheckAsync(string code, string email)
+        {
+            Poll pc = await GetPollByCodeAsync(code);
+            if (pc != null)
+            {
+                PollVote pv = await _context.PollVote
+                           .Select(pv => pv)
+                           .Where(pv => pv.PollID == pc.ID && pv.Email == email)
+                           .FirstOrDefaultAsync();
+                if (pv == null)
+                    return pc;
+                else return null;
+            }
+            else return null;
         }
 
         public async Task<Poll> UpdatePollAsync(Poll poll)
