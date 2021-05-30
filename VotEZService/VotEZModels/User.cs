@@ -33,7 +33,5 @@ namespace VotEZModels
             set { this.isAdmin = value; }
         }
 
-        //public ICollection<Poll> Poll { get; set; }
-        //public ICollection<PollVote> PollVote { get; set; }
     }
 }

@@ -47,6 +47,8 @@ namespace VotEZREST
                        });
                });
             services.AddDbContext<VotEZDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HMPersonalDB")));
+            services.AddScoped<IUserRepo, UserRepoDB>();
+            services.AddScoped<IUserBL, UserBL>();
             services.AddScoped<IPollRepo, PollRepoDB>();
             services.AddScoped<IPollBL, PollBL>();
             services.AddScoped<IPollChoicesRepo, PollChoicesRepoDB>();

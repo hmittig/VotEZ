@@ -91,6 +91,27 @@ namespace VotEZDL.Migrations
                     b.ToTable("PollVote");
                 });
 
+            modelBuilder.Entity("VotEZModels.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("VotEZModels.PollChoice", b =>
                 {
                     b.HasOne("VotEZModels.Poll", null)

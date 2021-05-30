@@ -10,7 +10,7 @@ using VotEZDL;
 namespace VotEZDL.Migrations
 {
     [DbContext(typeof(VotEZDBContext))]
-    [Migration("20210525001414_Initial")]
+    [Migration("20210530171941_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,6 +91,27 @@ namespace VotEZDL.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("PollVote");
+                });
+
+            modelBuilder.Entity("VotEZModels.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("VotEZModels.PollChoice", b =>
