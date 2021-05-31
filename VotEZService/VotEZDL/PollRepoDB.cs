@@ -20,15 +20,15 @@ namespace VotEZDL
 
         public async Task<Poll> AddPollAsync(Poll poll)
         {
-            string randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            string stringcode = "";
-            var random = new Random();
+            //string randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            //string stringcode = "";
+            //var random = new Random();
 
-            for (int i = 0; i < 6; i++)
-            {
-                stringcode += randomChars[random.Next(randomChars.Length)];
-            }
-            poll.Code = stringcode;
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    stringcode += randomChars[random.Next(randomChars.Length)];
+            //}
+            //poll.Code = stringcode;
             await _context.Poll.AddAsync(poll);
             await _context.SaveChangesAsync();
             return poll;
