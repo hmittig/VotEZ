@@ -66,7 +66,7 @@ namespace VotEZREST.Controllers
         }
 
         // PUT api/<UserController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{Id}")]
         public async Task<IActionResult> UpdateUserAsync(int Id, [FromBody] User user)
         {
             try

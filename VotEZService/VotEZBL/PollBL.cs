@@ -27,9 +27,19 @@ namespace VotEZBL
         {
             return await _repo.GetPollsAsync();
         }
+
+        public async Task<Poll> GetPollByIDAsync(int ID)
+        {
+            return await _repo.GetPollByIDAsync(ID);
+        }
         public async Task<List<Poll>> GetPollsByUserAsync(string email)
         {
             return await _repo.GetPollsByUserAsync(email);
+        }
+
+        public async Task<List<Poll>> GetUserVotedPollsAsync(string email)
+        {
+            return await _repo.GetUserVotedPollsAsync(email);
         }
 
         public async Task<Poll> PollCheckAsync(string code, string email)
@@ -46,5 +56,6 @@ namespace VotEZBL
         {
             return await _repo.DeletePollAsync(poll);
         }
+
     }
 }

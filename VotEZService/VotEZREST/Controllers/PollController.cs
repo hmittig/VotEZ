@@ -47,11 +47,31 @@ namespace VotEZREST.Controllers
         }
 
         //GET api/<PollController>
+        [HttpGet("/{id}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetPollsByIDAsync(int id)
+        {
+            var poll = await _pollBL.GetPollByIDAsync(id);
+            if (poll == null) return NotFound();
+            return Ok(poll);
+        }
+
+        //GET api/<PollController>
         [HttpGet("createdpolls/{email}")]
         [Produces("application/json")]
         public async Task<IActionResult> GetPollsByUserAsync(string email)
         {
             var poll = await _pollBL.GetPollsByUserAsync(email);
+            if (poll == null) return NotFound();
+            return Ok(poll);
+        }
+
+        //GET api/<PollController>
+        [HttpGet("votedpolls/{email}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetUserVotedPollsAsync(string email)
+        {
+            var poll = await _pollBL.GetUserVotedPollsAsync(email);
             if (poll == null) return NotFound();
             return Ok(poll);
         }
@@ -82,12 +102,12 @@ namespace VotEZREST.Controllers
         }
 
         // DELETE api/<PollController>/
-        [HttpDelete]
-        public async Task<IActionResult> DeletePollAsync(Poll poll)
+        [HttpDelete("{ID}")]
+        public async Task<IActionResult> DeletePollAsync(int ID)
         {
             try
             {
-                //var user = await _userBL.GetUserByIdAsync(id);
+                var poll = await _pollBL.GetPollByIDAsync(ID);
                 await _pollBL.DeletePollAsync(poll);
                 return NoContent();
             }

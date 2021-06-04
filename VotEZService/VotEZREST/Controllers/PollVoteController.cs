@@ -75,5 +75,15 @@ namespace VotEZREST.Controllers
                 return StatusCode(500);
             }
         }
+
+        //GET api/<PollVoteController>
+        [HttpGet("/total1/{id}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetOption1TotalAsync(int id)
+        {
+            var option1 = await _pvBL.GetOption1TotalAsync(id);
+            if (option1 == null) return NotFound();
+            return Ok(option1);
+        }
     }
 }

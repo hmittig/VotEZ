@@ -43,6 +43,17 @@ namespace VotEZDL
                 .ToListAsync();
         }
 
+        public async Task<Poll> GetPollByIDAsync(int id)
+        {
+            return await _context.Poll
+                .Include("PollChoice")
+                .AsNoTracking()
+                .Select(poll => poll)
+                .Where(poll => poll.ID == id)
+                .FirstOrDefaultAsync();
+        }
+
+
         public async Task<List<Poll>> GetPollsByUserAsync(string email)
         {
             return await _context.Poll
@@ -61,6 +72,20 @@ namespace VotEZDL
                 .Select(poll => poll)
                 .Where(poll => poll.Code == code && DateTime.Now < poll.DateToClose)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Poll>> GetUserVotedPollsAsync(string email)
+        {
+            var result =
+                from polls in _context.Poll
+                join pv in _context.PollVote
+                on polls.ID equals pv.ID
+                join pc in _context.PollChoices
+                on polls.PollChoice equals pc
+                where pv.Email == email
+                select polls;
+            return await result.Select(x => x).Include("PollChoice").AsNoTracking().ToListAsync();
+
         }
 
         public async Task<Poll> PollCheckAsync(string code, string email)

@@ -52,5 +52,21 @@ namespace VotEZDL
             await _context.SaveChangesAsync();
             return pv;
         }
+
+        public async Task<int> GetOption1TotalAsync(int pollID)
+        {
+            var result =
+                from pv in _context.PollVote
+                join pc in _context.PollChoices
+                on pv.Choice equals pc.Option1
+                join p in _context.Poll
+                on pc equals p.PollChoice
+                where pollID == pv.PollID
+                select new
+                {
+                    total = pv.Choice.Count()
+                };
+            return result.Select(x => x.total).FirstOrDefault();
+        }
     }
 }

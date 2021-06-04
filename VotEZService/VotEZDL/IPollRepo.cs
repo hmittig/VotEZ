@@ -13,9 +13,13 @@ namespace VotEZDL
 
         Task<List<Poll>> GetPollsAsync();
 
+        Task<Poll> GetPollByIDAsync(int ID);
+
         Task<List<Poll>> GetPollsByUserAsync(string email);
 
         Task<Poll> GetPollByCodeAsync(string code);
+
+        Task<List<Poll>> GetUserVotedPollsAsync(string email);
 
         Task<Poll> PollCheckAsync(string code, string email);
 
