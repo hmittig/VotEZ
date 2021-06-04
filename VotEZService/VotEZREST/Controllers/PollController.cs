@@ -47,7 +47,7 @@ namespace VotEZREST.Controllers
         }
 
         //GET api/<PollController>
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         [Produces("application/json")]
         public async Task<IActionResult> GetPollsByIDAsync(int id)
         {
