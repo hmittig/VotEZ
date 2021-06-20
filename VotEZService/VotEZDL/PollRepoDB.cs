@@ -79,7 +79,7 @@ namespace VotEZDL
             var result =
                 from polls in _context.Poll
                 join pv in _context.PollVote
-                on polls.ID equals pv.ID
+                on polls.ID equals pv.PollID
                 join pc in _context.PollChoices
                 on polls.PollChoice equals pc
                 where pv.Email == email
