@@ -77,7 +77,7 @@ namespace VotEZREST.Controllers
         }
 
         //GET api/<PollVoteController>
-        [HttpGet("/total1/{id},{option1}")]
+        [HttpGet("total1/{id},{option1}")]
         [Produces("application/json")]
         public async Task<IActionResult> GetOption1TotalAsync(int id, string option1)
         {
@@ -87,7 +87,7 @@ namespace VotEZREST.Controllers
         }
 
         //GET api/<PollVoteController>
-        [HttpGet("/total2/{id},{option2}")]
+        [HttpGet("total2/{id},{option2}")]
         [Produces("application/json")]
         public async Task<IActionResult> GetOption2TotalAsync(int id, string option2)
         {
@@ -97,7 +97,7 @@ namespace VotEZREST.Controllers
         }
 
         //GET api/<PollVoteController>
-        [HttpGet("/total3/{id},{option3}")]
+        [HttpGet("total3/{id},{option3}")]
         [Produces("application/json")]
         public async Task<IActionResult> GetOption3TotalAsync(int id, string option3)
         {
