@@ -43,9 +43,19 @@ namespace VotEZBL
             return await _repo.DeletePollVoteAsync(pv);
         }
 
-        public async Task<int> GetOptionTotalAsync(int pollID, string option)
+        public async Task<int> GetOption1TotalAsync(int pollID, string option)
         {
-            return await _repo.GetOptionTotalAsync(pollID, option);
+            return await _repo.GetOption1TotalAsync(pollID, option);
+        }
+
+        public async Task<int> GetOption2TotalAsync(int pollID, string option)
+        {
+            return await _repo.GetOption2TotalAsync(pollID, option);
+        }
+
+        public async Task<int> GetOption3TotalAsync(int pollID, string option)
+        {
+            return await _repo.GetOption3TotalAsync(pollID, option);
         }
     }
 }

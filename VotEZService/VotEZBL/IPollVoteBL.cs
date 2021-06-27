@@ -24,7 +24,13 @@ namespace VotEZBL
         // Delete a specified poll vote
         Task<PollVote> DeletePollVoteAsync(PollVote pv);
 
-        // Total the amount of votes for an option
-        Task<int> GetOptionTotalAsync(int pollID, string option);
+        // Total the amount of votes for option 1
+        Task<int> GetOption1TotalAsync(int pollID, string option);
+
+        // Total the amount of votes for option 2
+        Task<int> GetOption2TotalAsync(int pollID, string option);
+
+        // Total the amount of votes for option 3
+        Task<int> GetOption3TotalAsync(int pollID, string option);
     }
 }

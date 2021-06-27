@@ -19,6 +19,10 @@ namespace VotEZDL
 
         Task<PollVote> DeletePollVoteAsync(PollVote pv);
 
-        Task<int> GetOptionTotalAsync(int pollID, string option);
+        Task<int> GetOption1TotalAsync(int pollID, string option);
+
+        Task<int> GetOption2TotalAsync(int pollID, string option);
+
+        Task<int> GetOption3TotalAsync(int pollID, string option);
     }
 }
