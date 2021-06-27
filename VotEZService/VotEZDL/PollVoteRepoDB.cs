@@ -53,20 +53,20 @@ namespace VotEZDL
             return pv;
         }
 
-        public async Task<int> GetOption1TotalAsync(int pollID)
+        public async Task<int> GetOptionTotalAsync(int pollID, string option)
         {
             var result =
                 from pv in _context.PollVote
                 join pc in _context.PollChoices
                 on pv.Choice equals pc.Option1
-                join p in _context.Poll
-                on pc equals p.PollChoice
-                where pollID == pv.PollID
-                select new
-                {
-                    total = pv.Choice.Count()
-                };
-            return result.Select(x => x.total).FirstOrDefault();
+                where pv.PollID == pollID && pv.Choice == option
+                select pv;
+            List<PollVote> newList = new List<PollVote>();
+            foreach (var pv in result)
+            {
+                newList.Add(pv);
+            }
+            return newList.Count;
         }
     }
 }

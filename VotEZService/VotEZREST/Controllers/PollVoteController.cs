@@ -77,11 +77,11 @@ namespace VotEZREST.Controllers
         }
 
         //GET api/<PollVoteController>
-        [HttpGet("/total1/{id}")]
+        [HttpGet("/total1/{id},{option}")]
         [Produces("application/json")]
-        public async Task<IActionResult> GetOption1TotalAsync(int id)
+        public async Task<IActionResult> GetOption1TotalAsync(int id, string option)
         {
-            var option1 = await _pvBL.GetOption1TotalAsync(id);
+            var option1 = await _pvBL.GetOptionTotalAsync(id, option);
             if (option1 == null) return NotFound();
             return Ok(option1);
         }
